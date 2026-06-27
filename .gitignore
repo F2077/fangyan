@@ -1,0 +1,5 @@
+# brainstorming visual companion working directory
+.superpowers/
+
+# session memory (not plugin assets)
+.remember/
