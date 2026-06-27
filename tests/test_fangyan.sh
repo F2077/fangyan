@@ -10,6 +10,8 @@ OUT_PY=$(bash "$H" dongbei)
 echo "$OUT_CN" | grep -q "得体 > 地道" || { echo "FAIL: 缺元规则"; exit 1; }
 echo "$OUT_CN" | grep -q "灵魂词" || { echo "FAIL: 缺灵魂词段"; exit 1; }
 echo "$OUT_CN" | grep -q "整" || { echo "FAIL: 缺东北话灵魂词"; exit 1; }
+echo "$OUT_CN" | grep -q "落盘不退化" || { echo "FAIL: handler 输出缺 落盘不退化"; exit 1; }
+echo "$OUT_CN" | grep -q "^## 六、边界" && { echo "FAIL: handler 输出残留重复的 六、边界"; exit 1; } || true
 
 OUT_BAD=$(bash "$H" 火星话 || true)
 echo "$OUT_BAD" | grep -q "未知方言" || { echo "FAIL: 未知方言未提示"; exit 1; }

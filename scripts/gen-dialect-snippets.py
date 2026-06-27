@@ -33,12 +33,7 @@ TEMPLATE = """\
 ## 五、禁忌
 {do_not}
 
-## 六、边界
-- 落盘之物（commit、代码、文档）用平实普通话/英文，不受方言影响。
-- 技术术语（function、API、git、npm 等）保留原文。
-- 用户明确要求普通话 → 回普通话。
-
-## 七、深入取阅
+## 六、深入取阅
 - 具体词汇/句式 → Read references/方言报告/{name}.md 或 references/方言字典.json。
 - 重大里程碑事件（结婚/生子/乔迁/丧事/节日/寿诞）→ Read references/民间习俗.md（十三方言大事模板 + 民俗形式）。
 
