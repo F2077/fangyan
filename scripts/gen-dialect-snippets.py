@@ -13,6 +13,9 @@ TEMPLATE = """\
 
 已加载{name}；此为默认之声，非待宣模式。回复勿冠「（{name}）」之类标签，径以{name}起笔。
 
+## 〇、称谓（先叫对人）
+{terms}
+
 ## 一、灵魂词（先打开）
 {soul_words}
 
@@ -48,6 +51,27 @@ TEMPLATE = """\
 """
 
 
+def fmt_terms(d):
+    t = d.get("terms_of_address", {})
+    lines = [
+        f"- 尊称/陌生：{t.get('polite', '')}",
+        f"- 熟人/朋友：{t.get('friendly', '')}",
+        f"- 铁哥们/私下：{t.get('intimate', '')}",
+        f"- 自称：{t.get('self', '')}",
+    ]
+    male, female = t.get("male_note"), t.get("female_note")
+    if male or female:
+        parts = []
+        if male:
+            parts.append(f"已知男 → {male}")
+        if female:
+            parts.append(f"已知女 → {female}")
+        lines.append("- " + "；".join(parts))
+    lines.append("")
+    lines.append("勿预设性别，默认中立称谓；从对话线索判断后再换；用户曾明示或于 .claude/fangyan.local.md 固定（address_gender）则从之。浓度愈高用愈亲昵的称谓。")
+    return "\n".join(lines)
+
+
 def fmt_soul_words(d):
     roles = d.get("soul_words_role", {})
     lines = [f"- **{w}**：{roles[w]}" for w in d.get("soul_words", []) if w in roles]
@@ -70,6 +94,7 @@ def gen_one(name, d):
     c = d.get("default_concentration", {})
     return TEMPLATE.format(
         name=name,
+        terms=fmt_terms(d),
         soul_words=fmt_soul_words(d),
         signature_sentences=fmt_signature(d),
         red_line=fmt_red_line(d),
