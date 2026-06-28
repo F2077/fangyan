@@ -1,0 +1,280 @@
+/* ============================================================
+   方言字报 · The Dialect Gazette
+   民间字报 / 铅字印刷质感 · 地域色谱版面
+   ============================================================ */
+
+:root{
+  --paper:    #ECE0C9;
+  --paper-2:  #E4D4B2;
+  --paper-3:  #F3EAD6;
+  --ink:      #1C140C;
+  --ink-soft: #4A3D2E;
+  --ink-faint:#7A6A53;
+  --seal:     #B23A28;
+  --seal-deep:#8C2A1B;
+  --rule:     #1C140C;
+
+  --f-display:'ZCOOL QingKe HuangYou', 'Noto Serif SC', serif;
+  --f-brush:  'Ma Shan Zheng', 'Noto Serif SC', cursive;
+  --f-body:   'Noto Serif SC', 'Songti SC', serif;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  font-family:var(--f-body);
+  color:var(--ink);
+  background:
+    radial-gradient(120% 80% at 50% -10%, var(--paper-3) 0%, var(--paper) 45%, var(--paper-2) 100%);
+  background-attachment:fixed;
+  line-height:1.7;
+  font-weight:500;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* 纸纹颗粒覆盖 */
+.grain{
+  position:fixed; inset:0; z-index:9999; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11  0 0 0 0 0.08  0 0 0 0 0.05  0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.22; mix-blend-mode:multiply;
+}
+
+a{ color:inherit; }
+
+/* ============ 报头 ============ */
+.masthead{
+  max-width:1240px; margin:0 auto; padding:2.2rem 1.5rem 1.4rem;
+  text-align:center; position:relative;
+}
+.masthead-strip{
+  display:flex; gap:.55rem; justify-content:center; align-items:center;
+  font-size:.72rem; letter-spacing:.22em; color:var(--ink-soft);
+  text-transform:uppercase; margin-bottom:1.1rem;
+  font-weight:700;
+}
+.masthead-strip .dot{ color:var(--seal); }
+
+.rule{ height:0; border:0; border-top:3px solid var(--rule); }
+.rule-top{ margin-bottom:0; }
+.rule-double{
+  border-top:3px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  height:5px; margin:1.4rem 0 0;
+}
+
+.masthead-main{
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem;
+  margin:.4rem 0 .9rem;
+}
+.masthead-left{ text-align:right; }
+.masthead-left .kicker{
+  font-family:var(--f-body); font-weight:900; letter-spacing:.18em;
+  font-size:.78rem; text-transform:uppercase; color:var(--ink);
+}
+.masthead-left .kicker-sub{
+  font-family:var(--f-brush); font-size:1.15rem; color:var(--seal); margin-top:.15rem;
+}
+
+.wordmark{ display:flex; flex-direction:column; align-items:center; line-height:.9; }
+.wm-zh{
+  font-family:var(--f-display);
+  font-size:clamp(5.5rem, 16vw, 11rem);
+  letter-spacing:.06em;
+  color:var(--ink);
+  text-shadow: 2px 2px 0 rgba(178,58,40,.12);
+}
+.wm-en{
+  font-family:var(--f-body); font-weight:900;
+  letter-spacing:.42em; font-size:clamp(.7rem,1.6vw,1rem);
+  color:var(--seal); margin-top:.35rem; padding-left:.42em;
+}
+
+/* 印章 */
+.seal{
+  width:96px; height:96px; background:var(--seal); color:#F3EAD6;
+  display:grid; place-items:center; transform:rotate(-7deg);
+  font-family:var(--f-display); font-size:1.5rem; line-height:1.05;
+  text-align:center; letter-spacing:.04em;
+  box-shadow: 0 0 0 3px var(--seal), 0 0 0 6px var(--paper), 0 0 0 8px var(--seal);
+  border-radius:4px; position:relative;
+  animation: stampIn .5s cubic-bezier(.2,1.4,.4,1) both;
+}
+.seal.small{ width:62px; height:62px; font-size:1rem; box-shadow:0 0 0 2px var(--seal),0 0 0 4px var(--paper),0 0 0 5px var(--seal); }
+.seal span{ padding:.05em; }
+@keyframes stampIn{ 0%{ transform:rotate(-20deg) scale(1.6); opacity:0; } 60%{ opacity:1; } 100%{ transform:rotate(-7deg) scale(1); } }
+
+.tagline{
+  font-family:var(--f-brush);
+  font-size:clamp(2rem, 6vw, 3.6rem);
+  color:var(--ink); letter-spacing:.08em; margin-top:.2rem;
+}
+.tagline-sub{
+  font-family:var(--f-body); font-weight:700;
+  color:var(--ink-soft); font-size:1rem; letter-spacing:.06em;
+  min-height:1.6em; margin-top:.1rem;
+}
+.tagline-sub em{ font-style:normal; font-family:var(--f-brush); font-size:1.25rem; color:var(--seal); }
+
+/* ============ 字盘 ============ */
+.tray{
+  max-width:1240px; margin:0 auto; padding:1.4rem 1.5rem .4rem;
+}
+.tray-label{
+  text-align:center; font-weight:700; letter-spacing:.2em;
+  color:var(--ink-soft); font-size:.82rem; margin-bottom:1rem;
+}
+.tray-grid{
+  display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;
+}
+.stamp{
+  --accent:#888;
+  background:var(--accent); color:var(--paper-3);
+  font-family:var(--f-display); font-size:1.05rem; letter-spacing:.04em;
+  padding:.42rem .8rem; border:none; cursor:pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transform:rotate(var(--tilt,0deg));
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  border-radius:2px;
+}
+.stamp:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:3px 5px 0 var(--ink); filter:brightness(1.08); }
+.stamp:focus-visible{ outline:2px dashed var(--ink); outline-offset:3px; }
+
+/* ============ 版面 ============ */
+.section-head{ text-align:center; max-width:760px; margin:0 auto 2rem; padding:0 1.5rem; }
+.section-head h2{
+  font-family:var(--f-display); font-weight:400;
+  font-size:clamp(1.8rem,4vw,2.8rem); letter-spacing:.08em;
+  display:inline-flex; align-items:baseline; gap:.6em; color:var(--ink);
+}
+.hd-num{
+  font-family:var(--f-brush); color:var(--seal); font-size:1.1em;
+  transform:translateY(.06em); display:inline-block;
+}
+.section-head p{ color:var(--ink-soft); margin-top:.5rem; font-size:1rem; }
+
+.deck-section{ padding:3rem 1.5rem 1rem; max-width:1240px; margin:0 auto; }
+
+.deck{
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+  gap:1.4rem;
+}
+
+.card{
+  --accent:#888;
+  position:relative;
+  background:var(--paper-3);
+  border:2px solid var(--ink);
+  box-shadow:6px 6px 0 var(--ink);
+  display:flex; flex-direction:column;
+  transition:transform .2s ease, box-shadow .2s ease;
+  opacity:0; transform:translateY(18px);
+  animation:rise .55s ease forwards;
+  animation-delay:calc(var(--i,0) * 55ms);
+  scroll-margin-top:1rem;
+}
+@keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+.card:hover{ transform:translate(-3px,-3px); box-shadow:9px 9px 0 var(--ink); }
+.card-band{
+  background:var(--accent); color:var(--paper-3);
+  padding:.5rem .9rem; display:flex; align-items:center; justify-content:space-between;
+  border-bottom:2px solid var(--ink);
+}
+.card-name{ font-family:var(--f-display); font-size:1.5rem; letter-spacing:.06em; }
+.card-region{ font-size:.7rem; letter-spacing:.14em; font-weight:700; opacity:.85; }
+.card-body{ padding:1rem .9rem 1.1rem; display:flex; flex-direction:column; gap:.7rem; flex:1; }
+.card-sig{
+  font-family:var(--f-brush); font-size:1.85rem; line-height:1.25;
+  color:var(--ink); letter-spacing:.02em;
+}
+.card-sig::before{ content:'“'; color:var(--accent); font-family:var(--f-brush); margin-right:.05em; }
+.card-sig::after{ content:'”'; color:var(--accent); font-family:var(--f-brush); }
+.chips{ display:flex; flex-wrap:wrap; gap:.4rem; }
+.chip{
+  font-family:var(--f-display); font-size:.95rem; letter-spacing:.04em;
+  border:1.5px solid var(--ink); padding:.12rem .55rem;
+  background:var(--paper); color:var(--ink);
+}
+.card-foot{
+  margin-top:auto; padding-top:.6rem; border-top:1px dashed var(--ink-faint);
+  display:flex; justify-content:space-between; align-items:baseline; gap:.5rem;
+  font-size:.82rem; color:var(--ink-soft);
+}
+.card-folk{ font-weight:700; }
+.card-folk::before{ content:'◈ '; color:var(--accent); }
+
+/* ============ 用法 ============ */
+.usage{ max-width:1100px; margin:0 auto; padding:3rem 1.5rem 1rem; }
+.usage-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem;
+}
+.usage-card{
+  border:2px solid var(--ink); background:var(--paper-3);
+  padding:1.4rem 1.2rem; position:relative;
+  box-shadow:5px 5px 0 var(--seal);
+  display:flex; flex-direction:column; gap:.6rem;
+}
+.usage-no{
+  position:absolute; top:-.6rem; right:.7rem;
+  background:var(--seal); color:var(--paper-3);
+  font-family:var(--f-display); font-size:1rem;
+  width:1.8rem; height:1.8rem; display:grid; place-items:center;
+  border-radius:2px;
+}
+.usage-card code{
+  font-family:'SF Mono','Menlo',monospace; font-size:1.02rem;
+  background:var(--ink); color:var(--paper-3); padding:.4rem .6rem;
+  display:inline-block; align-self:flex-start; letter-spacing:.02em;
+}
+.usage-card p{ color:var(--ink-soft); font-size:.95rem; }
+.usage-card em{ font-style:normal; color:var(--seal); font-weight:700; }
+
+/* ============ 取舍 ============ */
+.why{
+  max-width:1100px; margin:0 auto; padding:3rem 1.5rem;
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.6rem;
+  text-align:center;
+}
+.why-col{ padding:0 .5rem; }
+.why-col h3{
+  font-family:var(--f-display); font-weight:400; font-size:1.4rem;
+  color:var(--seal); letter-spacing:.06em; margin-bottom:.4rem;
+}
+.why-col h3::before{ content:'— '; color:var(--ink-faint); }
+.why-col h3::after{ content:' —'; color:var(--ink-faint); }
+.why-col p{ color:var(--ink-soft); font-size:.96rem; }
+
+/* ============ 页脚 ============ */
+.colophon{ max-width:1240px; margin:0 auto; padding:0 1.5rem 3rem; }
+.colophon-main{
+  display:flex; justify-content:space-between; align-items:center; gap:2rem;
+  flex-wrap:wrap; padding-top:1.4rem;
+}
+.install-label{
+  font-family:var(--f-display); color:var(--seal); letter-spacing:.1em; font-size:1.1rem; margin-bottom:.4rem;
+}
+.install{
+  background:var(--ink); color:var(--paper-3);
+  padding:.9rem 1.1rem; font-size:.86rem; line-height:1.7;
+  font-family:'SF Mono','Menlo',monospace; overflow-x:auto;
+  border:2px solid var(--ink); box-shadow:4px 4px 0 var(--seal);
+}
+.colophon-side{ text-align:center; display:flex; flex-direction:column; align-items:center; gap:.7rem; }
+.colophon-side p{ font-family:var(--f-brush); color:var(--ink-soft); font-size:1.2rem; }
+
+/* ============ 响应式 ============ */
+@media (max-width:680px){
+  .masthead-main{ grid-template-columns:1fr; }
+  .masthead-left{ text-align:center; }
+  .seal{ margin:0 auto; }
+  .deck{ grid-template-columns:1fr; }
+  .colophon-main{ flex-direction:column; align-items:stretch; }
+  .colophon-side{ align-items:center; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation:none !important; transition:none !important; }
+  .card{ opacity:1; transform:none; }
+}

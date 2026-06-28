@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方言 · 一方水土，一方言 — Claude Code 方言对话插件</title>
+<meta name="description" content="fangyan：让 Claude Code 按需以多种方言对话的插件。默认普通话，/fangyan 切换，token 极简。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23B23A28'/%3E%3Ctext x='32' y='47' font-size='42' text-anchor='middle' fill='%23F3EAD6' font-family='serif'%3E%E6%96%B9%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 纸纹/颗粒覆盖层 -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ 报头 ============ -->
+<header class="masthead">
+  <div class="rule rule-top"></div>
+  <div class="masthead-strip">
+    <span>第拾叁期</span>
+    <span class="dot">·</span>
+    <span>默认普通话</span>
+    <span class="dot">·</span>
+    <span>按需加载</span>
+    <span class="dot">·</span>
+    <span>token 极简</span>
+  </div>
+
+  <div class="masthead-main">
+    <div class="masthead-left">
+      <p class="kicker">A Claude Code Plugin</p>
+      <p class="kicker-sub">让 AI 说一方之言</p>
+    </div>
+
+    <h1 class="wordmark">
+      <span class="wm-zh">方言</span>
+      <span class="wm-en">FANGYAN</span>
+    </h1>
+
+    <div class="seal" aria-hidden="true">
+      <span>一方<br>水土</span>
+    </div>
+  </div>
+
+  <p class="tagline" id="tagline">一方水土，一方言。</p>
+  <p class="tagline-sub" id="daily"></p>
+
+  <div class="rule rule-double"></div>
+</header>
+
+<!-- ============ 字盘：十三方言印章 ============ -->
+<nav class="tray" aria-label="方言字盘">
+  <p class="tray-label">— 字盘 · 拾叁方言之印 —</p>
+  <div class="tray-grid" id="tray"></div>
+</nav>
+
+<!-- ============ 版面：方言卡片 ============ -->
+<main class="deck-section">
+  <div class="section-head">
+    <h2><span class="hd-num">壹</span> 方言版面</h2>
+    <p>每一方水土，养一方口音。悬停见其神，点击闻其声。</p>
+  </div>
+  <div class="deck" id="deck"></div>
+</main>
+
+<!-- ============ 用法 ============ -->
+<section class="usage">
+  <div class="section-head">
+    <h2><span class="hd-num">贰</span> 怎么用</h2>
+    <p>三句命令，一方之言入耳。</p>
+  </div>
+  <div class="usage-grid">
+    <div class="usage-card">
+      <span class="usage-no">一</span>
+      <code>/fangyan 东北话</code>
+      <p>加载东北话（亦可 <em>dongbei</em> / <em>db</em>）</p>
+    </div>
+    <div class="usage-card">
+      <span class="usage-no">二</span>
+      <code>/fangyan 粤语</code>
+      <p>加载粤语（亦可 <em>yue</em> / <em>gd</em>）</p>
+    </div>
+    <div class="usage-card">
+      <span class="usage-no">三</span>
+      <code>/fangyan</code>
+      <p>留空列出全部方言及别名</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 取舍 ============ -->
+<section class="why">
+  <div class="why-col">
+    <h3>得体为先</h3>
+    <p>亲密度定浓度，红线词默认关，文化不错位——地道而不冒犯。</p>
+  </div>
+  <div class="why-col">
+    <h3>token 极简</h3>
+    <p>全套资料卧磁盘，唯所用方言入上下文。加载后约 +600 token，余者绝不混入。</p>
+  </div>
+  <div class="why-col">
+    <h3>落盘不退化</h3>
+    <p>方言味只活在对话层；代码、commit、文档一律平实，计算术语原样保留。</p>
+  </div>
+</section>
+
+<!-- ============ 页脚 ============ -->
+<footer class="colophon">
+  <div class="rule rule-double"></div>
+  <div class="colophon-main">
+    <div>
+      <p class="install-label">安装</p>
+      <pre class="install"><code>/plugin marketplace add https://github.com/F2077/fangyan
+/plugin install fangyan@fangyan-marketplace</code></pre>
+    </div>
+    <div class="colophon-side">
+      <div class="seal small" aria-hidden="true"><span>方<br>言</span></div>
+      <p>MIT · 一方水土，一方言</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
