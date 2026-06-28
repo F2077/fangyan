@@ -13,6 +13,8 @@
 
 ## 安装
 
+**运行环境**：需 `python3`（SessionStart 注入与片段生成均依赖）。Claude Code 环境通常自带。
+
 ```
 /plugin marketplace add https://github.com/F2077/fangyan
 /plugin install fangyan@fangyan-marketplace
