@@ -14,8 +14,8 @@
   --seal-deep:#8C2A1B;
   --rule:     #1C140C;
 
-  --f-display:'ZCOOL QingKe HuangYou', 'Noto Serif SC', serif;
-  --f-brush:  'Ma Shan Zheng', 'Noto Serif SC', cursive;
+  --f-display:'Noto Serif SC', 'Songti SC', serif;
+  --f-brush:  'LXGW WenKai', 'LXGW WenKai Screen', 'Noto Serif SC', serif;
   --f-body:   'Noto Serif SC', 'Songti SC', serif;
 }
 
@@ -81,6 +81,7 @@ a{ color:inherit; }
 .wordmark{ display:flex; flex-direction:column; align-items:center; line-height:.9; }
 .wm-zh{
   font-family:var(--f-display);
+  font-weight:900;
   font-size:clamp(5.5rem, 16vw, 11rem);
   letter-spacing:.06em;
   color:var(--ink);
@@ -96,7 +97,7 @@ a{ color:inherit; }
 .seal{
   width:96px; height:96px; background:var(--seal); color:#F3EAD6;
   display:grid; place-items:center; transform:rotate(-7deg);
-  font-family:var(--f-display); font-size:1.5rem; line-height:1.05;
+  font-family:var(--f-display); font-weight:900; font-size:1.5rem; line-height:1.05;
   text-align:center; letter-spacing:.04em;
   box-shadow: 0 0 0 3px var(--seal), 0 0 0 6px var(--paper), 0 0 0 8px var(--seal);
   border-radius:4px; position:relative;
@@ -132,7 +133,7 @@ a{ color:inherit; }
 .stamp{
   --accent:#888;
   background:var(--accent); color:var(--paper-3);
-  font-family:var(--f-display); font-size:1.05rem; letter-spacing:.04em;
+  font-family:var(--f-display); font-weight:700; font-size:1.05rem; letter-spacing:.04em;
   padding:.42rem .8rem; border:none; cursor:pointer;
   box-shadow: 2px 2px 0 var(--ink);
   transform:rotate(var(--tilt,0deg));
@@ -145,7 +146,7 @@ a{ color:inherit; }
 /* ============ 版面 ============ */
 .section-head{ text-align:center; max-width:760px; margin:0 auto 2rem; padding:0 1.5rem; }
 .section-head h2{
-  font-family:var(--f-display); font-weight:400;
+  font-family:var(--f-display); font-weight:900;
   font-size:clamp(1.8rem,4vw,2.8rem); letter-spacing:.08em;
   display:inline-flex; align-items:baseline; gap:.6em; color:var(--ink);
 }
@@ -182,7 +183,7 @@ a{ color:inherit; }
   padding:.5rem .9rem; display:flex; align-items:center; justify-content:space-between;
   border-bottom:2px solid var(--ink);
 }
-.card-name{ font-family:var(--f-display); font-size:1.5rem; letter-spacing:.06em; }
+.card-name{ font-family:var(--f-display); font-weight:900; font-size:1.5rem; letter-spacing:.06em; }
 .card-region{ font-size:.7rem; letter-spacing:.14em; font-weight:700; opacity:.85; }
 .card-body{ padding:1rem .9rem 1.1rem; display:flex; flex-direction:column; gap:.7rem; flex:1; }
 .card-sig{
@@ -239,7 +240,7 @@ a{ color:inherit; }
 }
 .why-col{ padding:0 .5rem; }
 .why-col h3{
-  font-family:var(--f-display); font-weight:400; font-size:1.4rem;
+  font-family:var(--f-display); font-weight:700; font-size:1.4rem;
   color:var(--seal); letter-spacing:.06em; margin-bottom:.4rem;
 }
 .why-col h3::before{ content:'— '; color:var(--ink-faint); }
@@ -253,7 +254,7 @@ a{ color:inherit; }
   flex-wrap:wrap; padding-top:1.4rem;
 }
 .install-label{
-  font-family:var(--f-display); color:var(--seal); letter-spacing:.1em; font-size:1.1rem; margin-bottom:.4rem;
+  font-family:var(--f-display); font-weight:700; color:var(--seal); letter-spacing:.1em; font-size:1.1rem; margin-bottom:.4rem;
 }
 .install{
   background:var(--ink); color:var(--paper-3);
