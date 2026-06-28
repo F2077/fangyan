@@ -42,4 +42,14 @@ for n in d['dialects']:
 print('single-source ok')
 "
 
+# 4) str.format 花括号稳健性：方言值含 {} 亦应原样生成（证伪 review 误报 + 回归锁死）
+TMPJ=$(mktemp -d)
+python3 -c "
+import json
+json.dump({'dialects':{'测{试}':{'soul_words':['{x}'],'soul_words_role':{'{x}':'含{花}括号'},'signature_sentences':['a{b}'],'red_line_words':['c'],'do_not':['d'],'default_concentration':{'stranger':20,'acquaintance':40,'friend':60,'close_friend':80},'terms_of_address':{'polite':'p','friendly':'f','intimate':'i','self':'s'}}}}, open('$TMPJ/soul.json','w'), ensure_ascii=False)
+"
+python3 scripts/gen-dialect-snippets.py "$TMPJ/soul.json" "$TMPJ/out" >/dev/null
+if ! grep -qF '{x}' "$TMPJ/out/测{试}.md"; then rm -rf "$TMPJ"; echo "FAIL: 花括号值未原样保留（str.format 崩或吞）"; exit 1; fi
+rm -rf "$TMPJ"
+
 echo "PASS integrity"

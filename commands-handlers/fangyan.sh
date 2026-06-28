@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# /fangyan 命令 handler：据参数 cat 元规则.md + 对应方言片段。
-# 用法：/fangyan <方言> [0-100]  —— 末尾 0-100 为浓度覆盖（不给则默认亲密度 80）。
+# /fangyan 命令 handler。
+# 用法：/fangyan <方言> [0-100]   加载方言（末尾 0-100 覆盖浓度；不给则默认亲密度 80）
+#       /fangyan 普通话|off|关      切回普通话
+#       /fangyan                   列出用法与方言
 # 方言清单派生自 方言灵魂.json（经 scripts/dialect-lookup.py），单一真相源。
 set -u
 ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
@@ -11,19 +13,32 @@ ARG="${ARG%"${ARG##*[![:space:]]}"}"
 META="${ROOT}/references/元规则.md"
 INJ="${ROOT}/references/方言注入"
 
-# 拆出可选浓度：末尾为 0-100 的 token 即浓度覆盖，余下为方言
+# 拆出可选浓度：末尾纯数字 token 即浓度（0-100），余下为方言
 DIALECT="$ARG"
 CONC=""
 if [ -n "$ARG" ]; then
   last="${ARG##* }"
   if [ "$last" != "$ARG" ]; then
     case "$last" in
-      [0-9]|[0-9][0-9]|100) CONC="$last"; DIALECT="${ARG% *}";;
+      *[!0-9]*|"") : ;;            # 非纯数字 → 当作方言的一部分
+      *)
+        if [ "${#last}" -le 3 ] && [ "$last" -le 100 ]; then CONC="$last"; DIALECT="${ARG% *}";
+        else echo "浓度须在 0–100 之间，得到 $last。"; exit 0; fi ;;
     esac
   fi
 fi
 
 lookup() { python3 "${ROOT}/scripts/dialect-lookup.py" "$@"; }
+
+# 切回普通话（插件无状态：注入一条覆盖指令，停用已加载的方言腔调）
+case "$DIALECT" in
+  普通话|mandarin|putonghua|off|关|停|normal|默认)
+    echo "# 切回普通话"
+    echo
+    echo "已切回普通话对话。此前加载的方言腔调停用——后续以标准普通话回复。"
+    echo "落盘之物（commit、代码、文档）仍平实普通话/英文。如需再加载方言：/fangyan <方言>。"
+    exit 0 ;;
+esac
 
 if [ -z "$DIALECT" ]; then
   lookup list
@@ -31,6 +46,7 @@ if [ -z "$DIALECT" ]; then
   echo "用法：/fangyan <方言> [0-100]"
   echo "  方言可用中文/拼音/代码（如 东北话 / dongbei / db）。"
   echo "  [0-100] 可选浓度覆盖；不给则默认亲密度 80（朋友级）。"
+  echo "  切回普通话：/fangyan 普通话（或 off / 关）。"
   echo "  例：/fangyan 东北话 50（收着）　/fangyan dongbei 95（铁哥们）"
   exit 0
 fi
