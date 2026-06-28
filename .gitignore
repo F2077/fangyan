@@ -3,3 +3,6 @@
 
 # session memory (not plugin assets)
 .remember/
+
+# python bytecode cache (gen script / integrity test)
+__pycache__/

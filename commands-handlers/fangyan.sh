@@ -3,6 +3,9 @@
 set -u
 ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 DIALECT="${1:-}"
+# 去首尾空白（harness 偶传尾随空格，否则被误判「未知方言」）
+DIALECT="${DIALECT#"${DIALECT%%[![:space:]]*}"}"
+DIALECT="${DIALECT%"${DIALECT##*[![:space:]]}"}"
 META="${ROOT}/references/元规则.md"
 INJ="${ROOT}/references/方言注入"
 
@@ -43,7 +46,7 @@ NAME=$(map_dialect "$DIALECT") || {
 SNIPPET="${INJ}/${NAME}.md"
 if [ ! -f "$SNIPPET" ]; then
   echo "片段缺失：${SNIPPET}。请运行 scripts/gen-dialect-snippets.py 生成。"
-  exit 0
+  exit 1
 fi
 
 cat "$META"
