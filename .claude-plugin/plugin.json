@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "fangyan",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "方言对话插件——按需加载多方言腔调（东北话/北京话/粤语/闽南话等），/fangyan 切换，默认普通话，token 极简。",
   "author": { "name": "F2077" }
 }
