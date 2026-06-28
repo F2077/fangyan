@@ -5,7 +5,8 @@ cd "$(dirname "$0")/.."
 rm -rf references/方言注入
 python3 scripts/gen-dialect-snippets.py references/方言灵魂.json references/方言注入
 N=$(ls references/方言注入/*.md | wc -l)
-[ "$N" -eq 13 ] || { echo "FAIL: expected 13 snippets, got $N"; exit 1; }
+EXP=$(python3 -c "import json; print(len(json.load(open('references/方言灵魂.json',encoding='utf-8'))['dialects']))")
+[ "$N" = "$EXP" ] || { echo "FAIL: expected $EXP snippets (方言灵魂.json 方言数), got $N"; exit 1; }
 F="references/方言注入/东北话.md"
 for kw in "默认之声" "灵魂词" "签名句" "浓度" "红线" "self-check" "整" "民间习俗" "里程碑" "称谓" "老铁" "大兄弟" "fangyan.local.md"; do
   grep -q "$kw" "$F" || { echo "FAIL: 东北话片段缺「$kw」"; exit 1; }

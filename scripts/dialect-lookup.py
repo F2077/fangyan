@@ -3,7 +3,7 @@
 
 用法：
   dialect-lookup.py resolve <输入>   命中 → 打印规范名（exit 0）；未命中 exit 1
-  dialect-lookup.py list             打印 /fangyan 无参用法（十三方言 + 别名）
+  dialect-lookup.py list             打印 /fangyan 无参用法（各方言 + 别名）
   dialect-lookup.py error <输入>     打印未知方言提示（exit 0，用户向帮助）
 
 匹配：中文名精确，或输入（不分大小写）∈ {code} ∪ aliases。
