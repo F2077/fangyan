@@ -35,4 +35,11 @@ echo "$OUT_C" | grep -q "默认之声" || { echo "FAIL: 带浓度参数未加载
 echo "$OUT_C" | grep -q "亲密度 50%" || { echo "FAIL: 浓度覆盖提示未注入"; exit 1; }
 echo "$(bash "$H" "dongbei 95")" | grep -q "亲密度 95%" || { echo "FAIL: 别名+浓度解析失败"; exit 1; }
 
+# 越界浓度 → 友好提示（不当「未知方言」）
+OUT_OOR=$(bash "$H" "东北话 120" || true)
+echo "$OUT_OOR" | grep -q "浓度须在 0–100" || { echo "FAIL: 越界浓度未友好提示"; exit 1; }
+# 切回普通话（普通话 / off / 关 等效）
+echo "$(bash "$H" 普通话)" | grep -q "切回普通话" || { echo "FAIL: /fangyan 普通话 未切回"; exit 1; }
+echo "$(bash "$H" off)" | grep -q "切回普通话" || { echo "FAIL: off 别名未切回"; exit 1; }
+
 echo "PASS fangyan"

@@ -12,7 +12,7 @@ content = (
     '本会话已启用「方言」插件，但尚未加载任何方言。当前以普通话对话。\n\n'
     f'加载方言：运行 /fangyan <方言> [0-100]，如 /fangyan 东北话、/fangyan dongbei 95。\n'
     f'可选（共 {n} 种）：{names}。\n\n'
-    '加载某方言后，方以该方言对话；默认亲密度 80（朋友级），可带 0-100 调浓度。未加载前勿自行切换。\n'
+    '加载某方言后，方以该方言对话；默认亲密度 80（朋友级），可带 0-100 调浓度。切回普通话：/fangyan 普通话。未加载前勿自行切换。\n'
     '落盘之物（commit、代码、文档）一律平实普通话/英文，不受方言影响。\n'
 )
 print(json.dumps({'hookSpecificOutput': {'hookEventName': 'SessionStart', 'additionalContext': content}}, ensure_ascii=False))
