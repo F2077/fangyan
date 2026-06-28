@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "fangyan",
-      "description": "方言对话插件——按需加载十三方言腔调，/fangyan 切换，默认普通话。",
+      "description": "方言对话插件——按需加载多方言腔调，/fangyan 切换，默认普通话。",
       "source": ".",
       "category": "productivity",
       "license": "MIT",
