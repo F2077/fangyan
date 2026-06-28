@@ -1,0 +1,14 @@
+# brainstorming visual companion working directory
+.superpowers/
+
+# session memory (not plugin assets)
+.remember/
+
+# python bytecode cache (gen script / integrity test)
+__pycache__/
+
+# playwright (local page verification)
+.playwright-mcp/
+
+# pages build output (CI artifact)
+_site/

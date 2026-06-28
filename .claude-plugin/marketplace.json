@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "fangyan-marketplace",
+  "description": "方言对话插件市集——一方水土，一方言。",
+  "owner": { "name": "F2077" },
+  "plugins": [
+    {
+      "name": "fangyan",
+      "description": "方言对话插件——按需加载十三方言腔调，/fangyan 切换，默认普通话。",
+      "source": ".",
+      "category": "productivity",
+      "license": "MIT",
+      "keywords": ["方言", "dialect", "中文", "chinese", "voice", "腔调"],
+      "homepage": "https://github.com/F2077/fangyan"
+    }
+  ]
+}
