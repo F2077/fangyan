@@ -29,4 +29,10 @@ printf -- '---\naddress_gender: female\n---\n' > "$TMPD/.claude/fangyan.local.md
 ( cd "$TMPD" && bash "$HABS" 东北话 ) | grep -q "优先用女性称谓变体" || { echo "FAIL: 性别固定提示未注入"; rm -rf "$TMPD"; exit 1; }
 rm -rf "$TMPD"
 
+# 浓度参数：<方言> <0-100>（以单串传入，模拟 slash 的 "${ARGUMENTS}"）
+OUT_C=$(bash "$H" "东北话 50")
+echo "$OUT_C" | grep -q "默认之声" || { echo "FAIL: 带浓度参数未加载片段"; exit 1; }
+echo "$OUT_C" | grep -q "亲密度 50%" || { echo "FAIL: 浓度覆盖提示未注入"; exit 1; }
+echo "$(bash "$H" "dongbei 95")" | grep -q "亲密度 95%" || { echo "FAIL: 别名+浓度解析失败"; exit 1; }
+
 echo "PASS fangyan"

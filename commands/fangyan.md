@@ -1,6 +1,6 @@
 ---
-description: 加载某方言对话腔调（如 /fangyan 东北话）；留空列出可选方言
-argument-hint: <方言名，如 东北话；可用拼音/代码>
+description: 加载方言腔调（如 /fangyan 东北话）；可带浓度 /fangyan 东北话 80；留空列用法
+argument-hint: <方言 [0-100]>，如 东北话 或 dongbei 95
 allowed-tools: Bash
 ---
 

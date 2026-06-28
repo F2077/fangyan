@@ -1,19 +1,37 @@
 #!/usr/bin/env bash
 # /fangyan 命令 handler：据参数 cat 元规则.md + 对应方言片段。
+# 用法：/fangyan <方言> [0-100]  —— 末尾 0-100 为浓度覆盖（不给则默认亲密度 80）。
 # 方言清单派生自 方言灵魂.json（经 scripts/dialect-lookup.py），单一真相源。
 set -u
 ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
-DIALECT="${1:-}"
+ARG="${1:-}"
 # 去首尾空白（harness 偶传尾随空格，否则被误判「未知方言」）
-DIALECT="${DIALECT#"${DIALECT%%[![:space:]]*}"}"
-DIALECT="${DIALECT%"${DIALECT##*[![:space:]]}"}"
+ARG="${ARG#"${ARG%%[![:space:]]*}"}"
+ARG="${ARG%"${ARG##*[![:space:]]}"}"
 META="${ROOT}/references/元规则.md"
 INJ="${ROOT}/references/方言注入"
+
+# 拆出可选浓度：末尾为 0-100 的 token 即浓度覆盖，余下为方言
+DIALECT="$ARG"
+CONC=""
+if [ -n "$ARG" ]; then
+  last="${ARG##* }"
+  if [ "$last" != "$ARG" ]; then
+    case "$last" in
+      [0-9]|[0-9][0-9]|100) CONC="$last"; DIALECT="${ARG% *}";;
+    esac
+  fi
+fi
 
 lookup() { python3 "${ROOT}/scripts/dialect-lookup.py" "$@"; }
 
 if [ -z "$DIALECT" ]; then
   lookup list
+  echo
+  echo "用法：/fangyan <方言> [0-100]"
+  echo "  方言可用中文/拼音/代码（如 东北话 / dongbei / db）。"
+  echo "  [0-100] 可选浓度覆盖；不给则默认亲密度 80（朋友级）。"
+  echo "  例：/fangyan 东北话 50（收着）　/fangyan dongbei 95（铁哥们）"
   exit 0
 fi
 
@@ -45,6 +63,14 @@ echo
 echo "---"
 echo
 cat "$SNIPPET"
+if [ -n "$CONC" ]; then
+  echo
+  echo "---"
+  echo
+  echo "## 浓度（本次：亲密度 ${CONC}%）"
+  echo
+  echo "本次按浓度 ${CONC}% 对话（覆盖默认亲密度 80%）。"
+fi
 if [ -n "$PIN_HINT" ]; then
   echo
   echo "---"
