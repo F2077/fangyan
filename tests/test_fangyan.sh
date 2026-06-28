@@ -22,4 +22,11 @@ echo "$OUT_BAD" | grep -q "未知方言" || { echo "FAIL: 未知方言未提示"
 OUT_NONE=$(bash "$H" || true)
 echo "$OUT_NONE" | grep -q "东北话" && echo "$OUT_NONE" | grep -q "闽南话" || { echo "FAIL: 无参未列方言"; exit 1; }
 
+# 性别固定：.claude/fangyan.local.md 命中 address_gender 时注入提示（#4）
+HABS="$(cd "$(dirname "$0")/.." && pwd)/commands-handlers/fangyan.sh"
+TMPD=$(mktemp -d); mkdir -p "$TMPD/.claude"
+printf -- '---\naddress_gender: female\n---\n' > "$TMPD/.claude/fangyan.local.md"
+( cd "$TMPD" && bash "$HABS" 东北话 ) | grep -q "优先用女性称谓变体" || { echo "FAIL: 性别固定提示未注入"; rm -rf "$TMPD"; exit 1; }
+rm -rf "$TMPD"
+
 echo "PASS fangyan"

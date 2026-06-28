@@ -8,6 +8,9 @@
   "dialects": {
     "北京话": {
       "code": "BJ",
+      "aliases": [
+        "beijing"
+      ],
       "name_cn": "北京话",
       "name_en": "Beijing Mandarin / Jingpian",
       "terms_of_address": {
@@ -87,6 +90,9 @@
     },
     "天津话": {
       "code": "TJ",
+      "aliases": [
+        "tianjin"
+      ],
       "name_cn": "天津话",
       "name_en": "Tianjin Mandarin",
       "terms_of_address": {
@@ -165,6 +171,9 @@
     },
     "成都话": {
       "code": "CD",
+      "aliases": [
+        "chengdu"
+      ],
       "name_cn": "成都话",
       "name_en": "Chengdu Sichuanese",
       "terms_of_address": {
@@ -245,6 +254,9 @@
     },
     "重庆话": {
       "code": "CQ",
+      "aliases": [
+        "chongqing"
+      ],
       "name_cn": "重庆话",
       "name_en": "Chongqing Sichuanese",
       "terms_of_address": {
@@ -326,6 +338,9 @@
     },
     "陕西话": {
       "code": "SX",
+      "aliases": [
+        "shaanxi"
+      ],
       "name_cn": "陕西话",
       "name_en": "Shaanxi Guanzhong Mandarin",
       "terms_of_address": {
@@ -406,6 +421,9 @@
     },
     "河南话": {
       "code": "HN",
+      "aliases": [
+        "henan"
+      ],
       "name_cn": "河南话",
       "name_en": "Henan Zhongyuan Mandarin",
       "terms_of_address": {
@@ -485,6 +503,9 @@
     },
     "云南话": {
       "code": "YN",
+      "aliases": [
+        "yunnan"
+      ],
       "name_cn": "云南话",
       "name_en": "Yunnan Kunming Mandarin",
       "terms_of_address": {
@@ -564,6 +585,9 @@
     },
     "东北话": {
       "code": "DB",
+      "aliases": [
+        "dongbei"
+      ],
       "name_cn": "东北话",
       "name_en": "Northeast Mandarin / Dongbeihua",
       "terms_of_address": {
@@ -645,6 +669,9 @@
     },
     "上海话": {
       "code": "SH",
+      "aliases": [
+        "shanghai"
+      ],
       "name_cn": "上海话",
       "name_en": "Shanghainese / Wu",
       "terms_of_address": {
@@ -723,6 +750,9 @@
     },
     "粤语": {
       "code": "GD",
+      "aliases": [
+        "yue"
+      ],
       "name_cn": "粤语",
       "name_en": "Cantonese",
       "terms_of_address": {
@@ -805,6 +835,9 @@
     },
     "山东话": {
       "code": "SD",
+      "aliases": [
+        "shandong"
+      ],
       "name_cn": "山东话",
       "name_en": "Shandong Mandarin",
       "terms_of_address": {
@@ -886,6 +919,11 @@
     },
     "湖南话": {
       "code": "HN_XIANG",
+      "aliases": [
+        "hunan",
+        "xiang",
+        "hnx"
+      ],
       "name_cn": "湖南话",
       "name_en": "Hunan Xiang",
       "terms_of_address": {
@@ -966,6 +1004,9 @@
     },
     "闽南话": {
       "code": "MN",
+      "aliases": [
+        "minnan"
+      ],
       "name_cn": "闽南话",
       "name_en": "Minnan / Hokkien / Taiwanese",
       "terms_of_address": {

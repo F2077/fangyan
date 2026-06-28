@@ -32,4 +32,14 @@ for f in references/方言注入/*.md; do
   }
 done
 
+# 3) single-source：每个 方言灵魂.json 方言名都能被 dialect-lookup.py 解析（防止清单与 JSON 漂移）
+python3 -c "
+import json, subprocess
+d = json.load(open('references/方言灵魂.json', encoding='utf-8'))
+for n in d['dialects']:
+    r = subprocess.run(['python3', 'scripts/dialect-lookup.py', 'resolve', n], capture_output=True, text=True)
+    assert r.returncode == 0 and r.stdout.strip() == n, f'{n} 解析失败: rc={r.returncode} out={r.stdout!r}'
+print('single-source ok')
+"
+
 echo "PASS integrity"
